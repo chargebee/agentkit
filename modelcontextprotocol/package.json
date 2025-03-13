@@ -1,14 +1,12 @@
 {
 	"name": "@chargebee/mcp",
-	"version": "0.0.1-alpha.2",
+	"version": "0.0.1-alpha.5",
 	"description": "MCP server for interacting with Chargebee",
 	"type": "module",
 	"main": "dist/index.js",
 	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
-	"bin": {
-		"mcp": "dist/index.js"
-	},
+	"bin": "dist/index.js",
 	"publishConfig": {
 		"access": "public"
 	},
