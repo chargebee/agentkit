@@ -1,0 +1,50 @@
+{
+	"name": "@chargebee/mcp",
+	"version": "0.0.1-alpha.5",
+	"description": "MCP server for interacting with Chargebee",
+	"type": "module",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"bin": "dist/index.js",
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"scripts": {
+		"build": "cross-env AGENTKIT_BASE_URL=https://agentkit.ai.localcblabs.com tsup",
+		"postbuild": "shx chmod +x dist/*.js",
+		"check": "tsc --noEmit",
+		"dev": "cross-env AGENTKIT_BASE_URL=http://agentkit.localcb.in:3001 tsup --watch"
+	},
+	"keywords": [
+		"chargebee",
+		"mcp",
+		"mcp-server",
+		"modelcontextprotocol"
+	],
+	"author": "Chargebee, Inc. (https://chargebee.com)",
+	"license": "MIT",
+	"engines": {
+		"node": ">=18"
+	},
+	"bugs": {
+		"url": "https://github.com/chargebee/agentkit/issues/new",
+		"email": "support@chargebee.com"
+	},
+	"devDependencies": {
+		"@types/node": "^22.13.10",
+		"cross-env": "^7.0.3",
+		"shx": "^0.3.4",
+		"tsup": "^8.4.0",
+		"typescript": "^5.8.2"
+	},
+	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.6.1",
+		"commander": "^13.1.0",
+		"zod": "^3.24.2"
+	}
+}
