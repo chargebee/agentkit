@@ -13,10 +13,10 @@
 	],
 	"access": "private",
 	"scripts": {
-		"build": "tsup",
+		"build": "cross-env AGENTKIT_BASE_URL=https://agentkit.ai.localcblabs.com tsup",
 		"postbuild": "shx chmod +x dist/*.js",
 		"check": "tsc --noEmit",
-		"dev": "cross-env BASE_URL=http://localhost:3000 pnpm build --watch"
+		"dev": "cross-env AGENTKIT_BASE_URL=http://agentkit.localcb.in:3001 tsup --watch"
 	},
 	"keywords": [
 		"chargebee",

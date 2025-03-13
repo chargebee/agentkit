@@ -1,5 +1,9 @@
 import { defineConfig } from 'tsup';
-import { version } from './package.json';
+import fs from 'fs';
+
+// Read version from package.json
+const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+const version = packageJson.version;
 
 export default defineConfig({
 	clean: true,
@@ -11,7 +15,7 @@ export default defineConfig({
 	outDir: 'dist',
 	splitting: false,
 	bundle: true,
-	minify: true,
+	minify: false,
 	external: [],
 	onSuccess: async () => {
 		console.log('Build succeeded!');
@@ -20,6 +24,6 @@ export default defineConfig({
 		js: `/*\n * MCP Server ${version} - Copyright (c) 2011-2025 Chargebee, Inc.\n */\n\n`,
 	},
 	define: {
-		BASE_URL: JSON.stringify('http://localhost:3001'), // process.env.BASE_URL ||  https://agentkit.ai.localcblabs.com
+		AGENTKIT_BASE_URL: JSON.stringify(process.env.AGENTKIT_BASE_URL), // https://agentkit.ai.localcblabs.com
 	},
 });

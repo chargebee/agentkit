@@ -1,63 +1,26 @@
-import crypto from 'crypto';
-import { logger } from './log.js';
-import { config } from '@/config.js';
-import { getPlatformInfo } from './platform.js';
-import {
-	chargebeeAIClient,
-	ChargebeeAIClient,
-} from '@/chargebee-ai-client/index.js';
+import { chargebeeAIClient } from '@/chargebee-ai-client/index.js';
 import { TelemetryData } from '@/chargebee-ai-client/types.js';
+import { config } from '@/config.js';
+import { logger } from './log.js';
+import { getPlatformInfo } from './platform.js';
 
 /**
  * Telemetry service for tracking usage and events
  */
 class TelemetryService {
-	private static instance: TelemetryService;
-	private sessionId: string;
 	private isEnabled: boolean;
 	private sessionStartTime: number;
-	public chargebeeAIClient: ChargebeeAIClient;
 
-	private constructor({
-		chargebeeAIClient,
-	}: {
-		chargebeeAIClient: ChargebeeAIClient;
-	}) {
-		this.sessionId = crypto.randomUUID();
+	constructor() {
 		this.sessionStartTime = Date.now();
 		this.isEnabled = !config.telemetry.disabled;
-		this.chargebeeAIClient = chargebeeAIClient;
 
 		if (this.isEnabled) {
 			// Get the telemetry endpoint from config or use a default
-			logger.debug(`Telemetry initialized with trace ID: ${this.sessionId}`);
+			logger.debug(`Telemetry initialized`);
 		} else {
 			logger.info('Telemetry is disabled');
 		}
-	}
-
-	/**
-	 * Get the singleton instance of the telemetry service
-	 */
-	public static getInstance({
-		chargebeeAIClient,
-	}: {
-		chargebeeAIClient: ChargebeeAIClient;
-	}): TelemetryService {
-		if (!TelemetryService.instance) {
-			TelemetryService.instance = new TelemetryService({ chargebeeAIClient });
-			chargebeeAIClient.attachHeaders({
-				'X-Chargebee-Session-Id': TelemetryService.instance.getSessionId(),
-			});
-		}
-		return TelemetryService.instance;
-	}
-
-	/**
-	 * Get the current trace ID
-	 */
-	public getSessionId(): string {
-		return this.sessionId;
 	}
 
 	/**
@@ -69,7 +32,7 @@ class TelemetryService {
 		eventName: string,
 		properties: Record<string, any> = {},
 	): Promise<void> {
-		if (!this.isEnabled || !this.chargebeeAIClient) {
+		if (!this.isEnabled) {
 			return;
 		}
 
@@ -77,7 +40,6 @@ class TelemetryService {
 			const eventData: TelemetryData = {
 				event: eventName,
 				timestamp: new Date().toISOString(),
-				sessionId: this.sessionId,
 				version: config.version,
 				platform: getPlatformInfo(),
 				sessionDuration: Date.now() - this.sessionStartTime,
@@ -98,12 +60,8 @@ class TelemetryService {
 	 * @param data - The data to send
 	 */
 	private async sendTelemetry(data: TelemetryData): Promise<void> {
-		if (!this.chargebeeAIClient) {
-			return;
-		}
-
 		try {
-			await this.chargebeeAIClient.sendTelemetry(data);
+			await chargebeeAIClient.sendTelemetry(data);
 		} catch (error) {
 			// Log but don't throw to prevent disrupting the main application flow
 			logger.debug(
@@ -113,6 +71,4 @@ class TelemetryService {
 	}
 }
 
-export const telemetryService = TelemetryService.getInstance({
-	chargebeeAIClient,
-});
+export const telemetryService = new TelemetryService();

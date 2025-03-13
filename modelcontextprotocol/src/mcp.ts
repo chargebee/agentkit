@@ -1,8 +1,4 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import {
-	ChargebeeAIClient,
-	chargebeeAIClient,
-} from './chargebee-ai-client/index.js';
 import { MCP_SERVER_NAME, VERSION } from './constants.js';
 import { tools } from './tools/index.js';
 import { logger } from './utils/log.js';
@@ -14,15 +10,11 @@ import { telemetryService } from './utils/telemetry.js';
  * @extends McpServer
  */
 export class ChargebeeMCPServer extends McpServer {
-	public chargebeeAIClient: ChargebeeAIClient;
-
 	constructor() {
 		super({
 			name: MCP_SERVER_NAME,
 			version: VERSION,
 		});
-
-		this.chargebeeAIClient = chargebeeAIClient;
 
 		const mcpClientDetails = this.server.getClientVersion();
 
@@ -54,8 +46,7 @@ export class ChargebeeMCPServer extends McpServer {
 					try {
 						logger.info('Received tool call:', tool.name);
 
-						// Track tool call start
-						await telemetryService.trackEvent('tool_call_start', {
+						await this.trackEvent('tool_call_start', {
 							tool: tool.name,
 							method: tool.method,
 						});
@@ -64,7 +55,7 @@ export class ChargebeeMCPServer extends McpServer {
 						success = true;
 
 						// Track tool call success
-						await telemetryService.trackEvent('tool_call_success', {
+						await this.trackEvent('tool_call_success', {
 							tool: tool.name,
 							method: tool.method,
 							duration: Date.now() - startTime,
@@ -82,7 +73,7 @@ export class ChargebeeMCPServer extends McpServer {
 						logger.error(`Error executing tool: ${tool.name}`, error);
 
 						// Track tool call error
-						await telemetryService.trackEvent('tool_call_error', {
+						await this.trackEvent('tool_call_error', {
 							tool: tool.name,
 							method: tool.method,
 							error: error instanceof Error ? error.message : String(error),
@@ -101,6 +92,16 @@ export class ChargebeeMCPServer extends McpServer {
 					}
 				},
 			);
+		});
+	}
+
+	private async trackEvent(eventName: string, data: any) {
+		const mcpClientDetails = this.server.getClientVersion();
+
+		await telemetryService.trackEvent(eventName, {
+			...data,
+			clientName: mcpClientDetails?.name,
+			clientVersion: mcpClientDetails?.version,
 		});
 	}
 }

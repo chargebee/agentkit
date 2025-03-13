@@ -20,7 +20,6 @@ export interface DocumentationSearchParams {
 export interface TelemetryData {
 	event: string;
 	timestamp: string;
-	sessionId: string;
 	version: string;
 	platform: string;
 	sessionDuration: number;

@@ -20,17 +20,15 @@ async function main() {
 		.version(VERSION)
 		.action(async () => {
 			try {
+				const mcpServer = new ChargebeeMCPServer();
+				const transport = new StdioServerTransport();
+
 				// Track server startup
 				await telemetryService.trackEvent('server_start', {
 					version: VERSION,
 				});
 
-				const mcpServer = new ChargebeeMCPServer();
-				const transport = new StdioServerTransport();
-
-				logger.info('Starting Chargebee MCP server...');
 				await mcpServer.connect(transport);
-				logger.info('Chargebee MCP server connected and running');
 
 				// Track server connected
 				await telemetryService.trackEvent('server_connected');

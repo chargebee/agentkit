@@ -8,30 +8,29 @@ import {
 } from './types.js';
 import { logger } from '@/utils/log.js';
 
+/**
+ * Client for interacting with the Chargebee AI API
+ * Provides methods for documentation search and telemetry reporting
+ */
 export class ChargebeeAIClient {
 	private readonly clientConfig: ClientConfig;
 	private headers: Record<string, any> = {};
-	private static instance: ChargebeeAIClient | null = null;
 
 	/**
-	 * Gets or creates a singleton instance of ChargebeeAIClient
-	 * @param clientConfig - Configuration options for the client
-	 * @returns The singleton instance of ChargebeeAIClient
+	 * Creates a new instance of the ChargebeeAIClient
+	 * @param clientConfig - Configuration options for the client including baseUrl and optional headers
 	 */
-	public static getInstance(
-		clientConfig: ClientConfig = { baseUrl: BASE_URL },
-	): ChargebeeAIClient {
-		if (!ChargebeeAIClient.instance) {
-			ChargebeeAIClient.instance = new ChargebeeAIClient(clientConfig);
-		}
-		return ChargebeeAIClient.instance;
-	}
-
-	private constructor(clientConfig: ClientConfig) {
+	constructor(clientConfig: ClientConfig) {
 		this.clientConfig = clientConfig;
 		this.attachHeaders(clientConfig.headers || {});
 	}
 
+	/**
+	 * Makes an HTTP request to the Chargebee AI API
+	 * @param options - Request configuration including endpoint, method, and optional body and headers
+	 * @returns Promise resolving to the parsed JSON response
+	 * @throws Error if the request fails or returns a non-OK status
+	 */
 	private async request<T>(options: RequestOptions): Promise<T> {
 		const url = `${this.clientConfig.baseUrl}${options.endpoint}`;
 		try {
@@ -77,11 +76,10 @@ export class ChargebeeAIClient {
 	public documentationSearch: Method<DocumentationSearchParams, string[]> =
 		async (params: DocumentationSearchParams, options = {}) => {
 			const response = await this.request<DocumentationSearchResponse>({
-				endpoint: '/v1/docs/search',
+				endpoint: '/v1/documentation/search',
 				method: 'POST',
 				body: JSON.stringify({
 					...params,
-					format: 'markdown', // INFO: For this MCP tool, we only provide markdown format.
 				}),
 				...options,
 			});
@@ -91,6 +89,7 @@ export class ChargebeeAIClient {
 	/**
 	 * Send telemetry data to the telemetry endpoint
 	 * @param data - The telemetry data to send
+	 * @param options - Optional request configuration
 	 * @returns A promise that resolves when the telemetry is sent
 	 */
 	public sendTelemetry: Method<TelemetryData, void> = async (
@@ -111,17 +110,8 @@ export class ChargebeeAIClient {
 			);
 		}
 	};
-
-	// Example of how to add new methods:
-	// public someNewMethod: Method<SomeRequestType, SomeResponseType> = async (params, options = {}) => {
-	//   const response = await this.request<SomeResponseType>({
-	//     endpoint: '/some/endpoint',
-	//     method: 'POST',
-	//     body: JSON.stringify(params),
-	//     ...options
-	//   });
-	//   return response;
-	// }
 }
 
-export const chargebeeAIClient = ChargebeeAIClient.getInstance();
+export const chargebeeAIClient = new ChargebeeAIClient({
+	baseUrl: AGENTKIT_BASE_URL,
+});

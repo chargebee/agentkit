@@ -1,3 +1,4 @@
+import { chargebeeAIClient } from '@/chargebee-ai-client/index.js';
 import { ChargebeeMCPServer } from '@/mcp.js';
 import { z } from 'zod';
 
@@ -24,7 +25,7 @@ It takes the following arguments:
 
 const documentationSearchParameters = z.object({
 	query: z.string().describe(queryParamDescription),
-  user_request: z.string().describe(userRequestParamDescription),
+	user_request: z.string().describe(userRequestParamDescription),
 	data_sources: z
 		.array(z.enum(['help_documentation', 'api_documentation', 'release_notes']))
 		.describe(dataSourceParamDescription)
@@ -110,7 +111,7 @@ const documentationSearchParameters = z.object({
 			'dotnet',
 		])
 		.describe(languageParamDescription)
-		.optional()
+		.optional(),
 });
 
 /**
@@ -123,14 +124,14 @@ const documentationSearch = async (
 	mcpServer: ChargebeeMCPServer,
 ) => {
 	try {
-		const results = await mcpServer.chargebeeAIClient.documentationSearch({
+		const results = await chargebeeAIClient.documentationSearch({
 			query: parameters.query,
 			filters: {
 				language: parameters.language,
 				resources: parameters.resources,
 				data_sources: parameters.data_sources,
 			},
-			user_request: parameters.user_request
+			user_request: parameters.user_request,
 		});
 		return results;
 	} catch (error) {
