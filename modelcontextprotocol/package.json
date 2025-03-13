@@ -1,0 +1,48 @@
+{
+	"name": "@chargebee/mcp-dev",
+	"version": "0.0.1",
+	"description": "MCP server for interacting with Chargebee",
+	"type": "module",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"bin": "dist/index.js",
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"access": "private",
+	"scripts": {
+		"build": "tsup",
+		"postbuild": "shx chmod +x dist/*.js",
+		"check": "tsc --noEmit",
+		"dev": "cross-env BASE_URL=http://localhost:3000 pnpm build --watch"
+	},
+	"keywords": [
+		"chargebee",
+		"mcp",
+		"mcp-server",
+		"modelcontextprotocol"
+	],
+	"author": "Chargebee, Inc. (https://chargebee.com)",
+	"license": "MIT",
+	"engines": {
+		"node": ">=18"
+	},
+	"bugs": {
+		"url": "http://support.chargebee.com",
+		"email": "support@chargebee.com"
+	},
+	"devDependencies": {
+		"@types/node": "^22.13.10",
+		"cross-env": "^7.0.3",
+		"shx": "^0.3.4",
+		"tsup": "^8.4.0",
+		"typescript": "^5.8.2"
+	},
+	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.6.1",
+		"commander": "^13.1.0",
+		"zod": "^3.24.2"
+	}
+}
