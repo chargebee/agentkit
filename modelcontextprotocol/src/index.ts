@@ -84,9 +84,6 @@ function handleError(error: any) {
 	process.exit(1);
 }
 
-// Only run the main function if this is the main module
-if (import.meta.url === `file://${process.argv[1]}`) {
-	main().catch((error) => {
-		handleError(error);
-	});
-}
+main().catch((error) => {
+	handleError(error);
+});

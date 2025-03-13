@@ -2,7 +2,7 @@
 
 ## Overview
 
-Model Context Protocol (MCP) is a [new, standardized protocol](https://modelcontextprotocol.io/introduction) for managing context between large language models (LLMs) and external systems. In this package, we provide an installer as well as an MCP Server for [Chargebee](https://chargebee.com).
+Model Context Protocol (MCP) is a new, [standardized protocol](https://modelcontextprotocol.io/introduction) for managing context between large language models (LLMs) and external systems. In this package, we provide an installer as well as an MCP Server for [Chargebee](https://chargebee.com).
 
 This enables AI agents to generate integration code and answer your product queries using natural language in tools like Cursor IDE, Claude Desktop, or any MCP client.
 
@@ -113,4 +113,4 @@ export CHARGEBEE_TELEMETRY_DISABLED=1
 
 ## License
 
-[MIT](LICENSE)
+[MIT](https://github.com/chargebee/agentkit/blob/develop/LICENSE)

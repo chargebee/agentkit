@@ -1,17 +1,19 @@
 {
-	"name": "@chargebee/mcp-dev",
-	"version": "0.0.1",
+	"name": "@chargebee/mcp",
+	"version": "0.0.1-alpha.5",
 	"description": "MCP server for interacting with Chargebee",
 	"type": "module",
 	"main": "dist/index.js",
 	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"bin": "dist/index.js",
+	"publishConfig": {
+		"access": "public"
+	},
 	"files": [
 		"dist",
 		"README.md"
 	],
-	"access": "private",
 	"scripts": {
 		"build": "cross-env AGENTKIT_BASE_URL=https://agentkit.ai.localcblabs.com tsup",
 		"postbuild": "shx chmod +x dist/*.js",
@@ -30,7 +32,7 @@
 		"node": ">=18"
 	},
 	"bugs": {
-		"url": "http://support.chargebee.com",
+		"url": "https://github.com/chargebee/agentkit/issues/new",
 		"email": "support@chargebee.com"
 	},
 	"devDependencies": {
