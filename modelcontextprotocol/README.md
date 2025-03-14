@@ -94,23 +94,6 @@ Access the MCP settings by clicking "Edit MCP Settings" in Roo Code settings or 
 
 To contribute to this project, please see the [contribution guide](CONTRIBUTING.md).
 
-## Telemetry
-
-The Chargebee MCP server collects anonymous usage data to help improve the product. This data includes:
-
-- Server startup and shutdown events
-- Tool usage statistics
-- Error information
-- Session duration
-
-### Disabling Telemetry
-
-You can disable telemetry by setting the `CHARGEBEE_TELEMETRY_DISABLED` environment variable to `1`:
-
-```bash
-export CHARGEBEE_TELEMETRY_DISABLED=1
-```
-
 ## License
 
 [MIT](https://github.com/chargebee/agentkit/blob/develop/LICENSE)
