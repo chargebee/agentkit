@@ -96,4 +96,4 @@ To contribute to this project, please see the [contribution guide](CONTRIBUTING.
 
 ## License
 
-[MIT](https://github.com/chargebee/agentkit/blob/develop/LICENSE)
+[MIT](https://github.com/chargebee/agentkit/blob/main/LICENSE)
