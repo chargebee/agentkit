@@ -24,6 +24,6 @@ export default defineConfig({
 		js: `/*\n * MCP Server ${version} - Copyright (c) 2011-2025 Chargebee, Inc.\n */\n\n`,
 	},
 	define: {
-		AGENTKIT_BASE_URL: JSON.stringify(process.env.AGENTKIT_BASE_URL), // https://agentkit.ai.localcblabs.com
+		AGENTKIT_BASE_URL: JSON.stringify(process.env.AGENTKIT_BASE_URL),
 	},
 });
