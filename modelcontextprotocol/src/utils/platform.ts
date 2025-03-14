@@ -1,5 +1,5 @@
 import { VERSION } from '@/constants.js';
-import os from 'os';
+import os from 'node:os';
 
 interface UserAgentParams {
 	mcpClientName?: string;
