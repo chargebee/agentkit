@@ -5,7 +5,6 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { Command } from 'commander';
 import { VERSION } from './constants.js';
 import { ChargebeeMCPServer } from './mcp.js';
-import { telemetryService } from './utils/telemetry.js';
 
 /**
  * Main entry point for the Chargebee MCP server
@@ -23,23 +22,12 @@ async function main() {
 				const mcpServer = new ChargebeeMCPServer();
 				const transport = new StdioServerTransport();
 
-				// Track server startup
-				await telemetryService.trackEvent('server_start', {
-					version: VERSION,
-				});
-
 				await mcpServer.connect(transport);
-
-				// Track server connected
-				await telemetryService.trackEvent('server_connected');
 
 				// Handle process signals
 				const cleanup = async () => {
 					if (mcpServer) {
 						logger.info('Shutting down Chargebee MCP server...');
-
-						// Track server shutdown
-						await telemetryService.trackEvent('server_shutdown');
 
 						await mcpServer.close();
 						process.exit(0);
@@ -52,11 +40,6 @@ async function main() {
 				// Keep the process running
 				await new Promise(() => {});
 			} catch (error) {
-				// Track server error
-				await telemetryService.trackEvent('server_error', {
-					error: error instanceof Error ? error.message : String(error),
-				});
-
 				logger.error('Error starting Chargebee MCP server:', error);
 				process.exit(1);
 			}
@@ -70,15 +53,6 @@ async function main() {
  * @param error - The error that occurred during initialization
  */
 function handleError(error: any) {
-	// Track initialization error
-	telemetryService
-		.trackEvent('initialization_error', {
-			error: error instanceof Error ? error.message : String(error),
-		})
-		.catch(() => {
-			// Ignore telemetry errors during shutdown
-		});
-
 	logger.error('\n🚨  Error initializing Aero AI MCP server:\n');
 	logger.warn(`   ${error.message}\n`);
 	process.exit(1);

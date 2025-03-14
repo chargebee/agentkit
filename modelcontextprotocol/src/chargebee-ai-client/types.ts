@@ -17,15 +17,6 @@ export interface DocumentationSearchParams {
 	user_request?: string;
 }
 
-export interface TelemetryData {
-	event: string;
-	timestamp: string;
-	version: string;
-	platform: string;
-	sessionDuration: number;
-	[key: string]: any;
-}
-
 export interface RequestOptions extends RequestInit {
 	endpoint: string;
 }
