@@ -1,6 +1,6 @@
 {
 	"name": "@chargebee/mcp",
-	"version": "0.0.1-alpha.5",
+	"version": "0.0.1-alpha.6",
 	"description": "MCP server for interacting with Chargebee",
 	"type": "module",
 	"main": "dist/index.js",
@@ -15,7 +15,7 @@
 		"README.md"
 	],
 	"scripts": {
-		"build": "cross-env AGENTKIT_BASE_URL=https://agentkit.ai.localcblabs.com tsup",
+		"build": "cross-env AGENTKIT_BASE_URL=https://agentkit.chargebee.ai tsup",
 		"postbuild": "shx chmod +x dist/*.js",
 		"check": "tsc --noEmit",
 		"dev": "cross-env AGENTKIT_BASE_URL=http://agentkit.localcb.in:3001 tsup --watch"

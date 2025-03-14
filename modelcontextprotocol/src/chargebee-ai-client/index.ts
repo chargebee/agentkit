@@ -4,13 +4,10 @@ import {
 	DocumentationSearchResponse,
 	Method,
 	RequestOptions,
-	TelemetryData,
 } from './types.js';
-import { logger } from '@/utils/log.js';
 
 /**
  * Client for interacting with the Chargebee AI API
- * Provides methods for documentation search and telemetry reporting
  */
 export class ChargebeeAIClient {
 	private readonly clientConfig: ClientConfig;
@@ -74,42 +71,16 @@ export class ChargebeeAIClient {
 	 * @returns Promise resolving to an array of search results in markdown format
 	 */
 	public documentationSearch: Method<DocumentationSearchParams, string[]> =
-		async (params: DocumentationSearchParams, options = {}) => {
+		async (params: DocumentationSearchParams) => {
 			const response = await this.request<DocumentationSearchResponse>({
 				endpoint: '/v1/documentation/search',
 				method: 'POST',
 				body: JSON.stringify({
 					...params,
 				}),
-				...options,
 			});
 			return response.results;
 		};
-
-	/**
-	 * Send telemetry data to the telemetry endpoint
-	 * @param data - The telemetry data to send
-	 * @param options - Optional request configuration
-	 * @returns A promise that resolves when the telemetry is sent
-	 */
-	public sendTelemetry: Method<TelemetryData, void> = async (
-		data: TelemetryData,
-		options = {},
-	) => {
-		try {
-			await this.request<void>({
-				endpoint: '/v1/telemetry',
-				method: 'POST',
-				body: JSON.stringify(data),
-				...options,
-			});
-		} catch (error) {
-			// Silently fail telemetry errors to not disrupt the main application flow
-			logger.debug(
-				`Telemetry error: ${error instanceof Error ? error.message : String(error)}`,
-			);
-		}
-	};
 }
 
 export const chargebeeAIClient = new ChargebeeAIClient({

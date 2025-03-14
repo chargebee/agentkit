@@ -1,8 +1,9 @@
+import crypto from 'node:crypto';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { MCP_SERVER_NAME, VERSION } from './constants.js';
 import { tools } from './tools/index.js';
-import { logger } from './utils/log.js';
-import { telemetryService } from './utils/telemetry.js';
+import { getUserAgent } from './utils/platform.js';
+import { chargebeeAIClient } from './chargebee-ai-client/index.js';
 
 /**
  * A server implementation for the Model Context Protocol (MCP) specific to Chargebee.
@@ -16,15 +17,20 @@ export class ChargebeeMCPServer extends McpServer {
 			version: VERSION,
 		});
 
-		const mcpClientDetails = this.server.getClientVersion();
-
 		this.registerTools();
 
-		// Track server initialization
-		telemetryService.trackEvent('server_initialized', {
-			clientName: mcpClientDetails?.name,
-			clientVersion: mcpClientDetails?.version,
-		});
+		this.server.oninitialized = () => {
+			const mcpClient = this.server.getClientVersion();
+			const userAgent = getUserAgent({
+				mcpClientName: mcpClient?.name,
+				mcpClientVersion: mcpClient?.version,
+			});
+
+			chargebeeAIClient.attachHeaders({
+				'User-Agent': userAgent,
+				'x-mcp-session-id': crypto.randomUUID(),
+			});
+		};
 	}
 
 	/**
@@ -40,26 +46,8 @@ export class ChargebeeMCPServer extends McpServer {
 				tool.description,
 				tool.parameters.shape,
 				async (arg: any) => {
-					const startTime = Date.now();
-					let success = false;
-
 					try {
-						logger.info('Received tool call:', tool.name);
-
-						await this.trackEvent('tool_call_start', {
-							tool: tool.name,
-							method: tool.method,
-						});
-
 						const result = await tool.execute(arg, this);
-						success = true;
-
-						// Track tool call success
-						await this.trackEvent('tool_call_success', {
-							tool: tool.name,
-							method: tool.method,
-							duration: Date.now() - startTime,
-						});
 
 						return {
 							content: [
@@ -70,16 +58,6 @@ export class ChargebeeMCPServer extends McpServer {
 							],
 						};
 					} catch (error) {
-						logger.error(`Error executing tool: ${tool.name}`, error);
-
-						// Track tool call error
-						await this.trackEvent('tool_call_error', {
-							tool: tool.name,
-							method: tool.method,
-							error: error instanceof Error ? error.message : String(error),
-							duration: Date.now() - startTime,
-						});
-
 						return {
 							content: [
 								{
@@ -92,16 +70,6 @@ export class ChargebeeMCPServer extends McpServer {
 					}
 				},
 			);
-		});
-	}
-
-	private async trackEvent(eventName: string, data: any) {
-		const mcpClientDetails = this.server.getClientVersion();
-
-		await telemetryService.trackEvent(eventName, {
-			...data,
-			clientName: mcpClientDetails?.name,
-			clientVersion: mcpClientDetails?.version,
 		});
 	}
 }
