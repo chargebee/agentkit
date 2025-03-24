@@ -75,7 +75,7 @@ export class ChargebeeAIClient {
 	public documentationSearch: Method<DocumentationSearchParams, DocumentationSearchResponse['results']> =
 		async (params: DocumentationSearchParams) => {
 			const response = await this.request<DocumentationSearchResponse>({
-				endpoint: '/v1/tools/documentation/search',
+				endpoint: '/v1/tools/documentation_search',
 				method: 'POST',
 				body: JSON.stringify({
 					...params,
