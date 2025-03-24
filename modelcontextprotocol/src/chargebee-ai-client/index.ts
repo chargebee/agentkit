@@ -1,5 +1,7 @@
 import {
 	ClientConfig,
+	CodePlannerParams,
+	CodePlannerResponse,
 	DocumentationSearchParams,
 	DocumentationSearchResponse,
 	Method,
@@ -70,10 +72,10 @@ export class ChargebeeAIClient {
 	 * @param options - Optional request configuration
 	 * @returns Promise resolving to an array of search results in markdown format
 	 */
-	public documentationSearch: Method<DocumentationSearchParams, string[]> =
+	public documentationSearch: Method<DocumentationSearchParams, DocumentationSearchResponse['results']> =
 		async (params: DocumentationSearchParams) => {
 			const response = await this.request<DocumentationSearchResponse>({
-				endpoint: '/v1/documentation/search',
+				endpoint: '/v1/tools/documentation/search',
 				method: 'POST',
 				body: JSON.stringify({
 					...params,
@@ -81,8 +83,29 @@ export class ChargebeeAIClient {
 			});
 			return response.results;
 		};
+
+	/**
+	 * Generates a code planner using the provided parameters
+	 * @param params - Parameters for the code planner
+	 * @param options - Optional request configuration
+	 * @returns String containing the code planner
+	 */
+	public getCodePlanner: Method<CodePlannerParams, CodePlannerResponse['result']['content']> = async (
+		params: CodePlannerParams,
+	) => {
+		const response = await this.request<CodePlannerResponse>({
+			endpoint: '/v1/tools/code_planner',
+			method: 'POST',
+			body: JSON.stringify({
+				...params,
+				query: params.query,
+        stream: false
+			}),
+		});
+		return response.result.content;
+	};
 }
 
 export const chargebeeAIClient = new ChargebeeAIClient({
-	baseUrl: AGENTKIT_BASE_URL,
+	baseUrl: process.env.AGENTKIT_BASE_URL!,
 });

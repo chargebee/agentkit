@@ -15,10 +15,10 @@
 		"README.md"
 	],
 	"scripts": {
-		"build": "cross-env AGENTKIT_BASE_URL=https://agentkit.chargebee.ai tsup",
+		"build": "cross-env NODE_ENV=production tsup",
 		"postbuild": "shx chmod +x dist/*.js",
 		"check": "tsc --noEmit",
-		"dev": "cross-env AGENTKIT_BASE_URL=http://agentkit.localcb.in:3001 tsup --watch"
+		"dev": "cross-env NODE_ENV=development tsup --watch"
 	},
 	"keywords": [
 		"chargebee",
@@ -38,6 +38,7 @@
 	"devDependencies": {
 		"@types/node": "^22.13.10",
 		"cross-env": "^7.0.3",
+		"dotenv": "^16.4.7",
 		"shx": "^0.3.4",
 		"tsup": "^8.4.0",
 		"typescript": "^5.8.2"

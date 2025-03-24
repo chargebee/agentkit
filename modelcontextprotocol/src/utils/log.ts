@@ -4,12 +4,14 @@ const YELLOW = '\x1b[33m';
 const BLUE = '\x1b[34m';
 const RESET = '\x1b[0m';
 
+// Important Note: Here console.error is usedinstead of console.log to avoid breaking the MCP server since it listens to stdio.
+
 /**
  * Wraps text with ANSI escape codes to display it in red color in the console
  * @param text - The string to be colored in red
  * @returns The input string wrapped with ANSI red color codes
  * @example
- * console.log(red('Error message')); // Prints 'Error message' in red
+ * console.error(red('Error message')); // Prints 'Error message' in red
  */
 export function red(text: string) {
 	return `${RED}${text}${RESET}`;
@@ -20,7 +22,7 @@ export function red(text: string) {
  * @param text - The string to be colored in green
  * @returns The input string wrapped with ANSI green color codes
  * @example
- * console.log(green('Success message')); // Prints 'Success message' in green
+ * console.error(green('Success message')); // Prints 'Success message' in green
  */
 export function green(text: string) {
 	return `${GREEN}${text}${RESET}`;
@@ -31,7 +33,7 @@ export function green(text: string) {
  * @param text - The string to be colored in yellow
  * @returns The input string wrapped with ANSI yellow color codes
  * @example
- * console.log(yellow('Warning message')); // Prints 'Warning message' in yellow
+ * console.error(yellow('Warning message')); // Prints 'Warning message' in yellow
  */
 export function yellow(text: string) {
 	return `${YELLOW}${text}${RESET}`;
@@ -42,7 +44,7 @@ export function yellow(text: string) {
  * @param text - The string to be colored in blue
  * @returns The input string wrapped with ANSI blue color codes
  * @example
- * console.log(blue('Info message')); // Prints 'Info message' in blue
+ * console.error(blue('Info message')); // Prints 'Info message' in blue
  */
 export function blue(text: string) {
 	return `${BLUE}${text}${RESET}`;
@@ -102,7 +104,7 @@ export class Logger {
 	 */
 	warn(message: string, ...args: any[]): void {
 		if (this.level >= LogLevel.WARN) {
-			console.warn(yellow(`[WARN] ${message}`), ...args);
+			console.error(yellow(`[WARN] ${message}`), ...args);
 		}
 	}
 
@@ -113,7 +115,7 @@ export class Logger {
 	 */
 	info(message: string, ...args: any[]): void {
 		if (this.level >= LogLevel.INFO) {
-			console.info(blue(`[INFO] ${message}`), ...args);
+			console.error(blue(`[INFO] ${message}`), ...args);
 		}
 	}
 
@@ -124,7 +126,7 @@ export class Logger {
 	 */
 	debug(message: string, ...args: any[]): void {
 		if (this.level >= LogLevel.DEBUG) {
-			console.debug(green(`[DEBUG] ${message}`), ...args);
+			console.error(green(`[DEBUG] ${message}`), ...args);
 		}
 	}
 }

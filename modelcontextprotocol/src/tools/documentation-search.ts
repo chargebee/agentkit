@@ -7,99 +7,24 @@ import { z } from 'zod';
 
 const queryParamDescription = `The user query to search an answer for in the Chargebee documentation.`;
 const languageParamDescription = `The programming language for the documentation. Check the user's application language.`;
-const resourceParamDescription = `The Chargebee resources to search documentation for.`;
-const dataSourceParamDescription = `The type of documentation source to search in (help documentation, API documentation, or release notes).`;
 const userRequestParamDescription = `User's original request to you.`;
 
 const documentationSearchPrompt = `
+Do not use this tool for code generation. For code generation use "chargebee_code_planner" tool. 
 This tool will take in parameters about integrating with Chargebee in their application, then search and retrieve relevant Chargebee documentation content.
 
 It takes the following arguments:
 - query (string): ${queryParamDescription}
-- user_request (string): ${userRequestParamDescription}
-- data_sources (array of enum): ${dataSourceParamDescription}
-- resources (array of enum): ${resourceParamDescription}
 - language (enum): ${languageParamDescription}
+- userRequest (string): ${userRequestParamDescription}
 `;
 
 const documentationSearchParameters = z.object({
 	query: z.string().describe(queryParamDescription),
-	user_request: z.string().describe(userRequestParamDescription).optional(),
-	data_sources: z
-		.array(z.enum(['help_documentation', 'api_documentation', 'release_notes']))
-		.describe(dataSourceParamDescription)
-		.optional(),
-	resources: z
-		.array(
-			z
-				.enum([
-					'address',
-					'attached_item',
-					'business_entity_change',
-					'card',
-					'comment',
-					'configuration',
-					'coupon',
-					'coupon_code',
-					'coupon_set',
-					'credit_note',
-					'currency',
-					'customer',
-					'customer_entitlement',
-					'differential_price',
-					'entitlement',
-					'entitlement_override',
-					'estimate',
-					'event',
-					'export',
-					'feature',
-					'full_export',
-					'gift',
-					'hosted_page',
-					'in_app_subscription',
-					'installment',
-					'installment_config',
-					'invoice',
-					'item',
-					'item_entitlement',
-					'item_family',
-					'item_price',
-					'non_subscription',
-					'omnichannel_subscription',
-					'omnichannel_subscription_item',
-					'order',
-					'payment_intent',
-					'payment_schedule_scheme',
-					'payment_source',
-					'payment_voucher',
-					'portal_session',
-					'price_variant',
-					'pricing_page_session',
-					'product',
-					'promotional_credit',
-					'purchase',
-					'quote',
-					'ramp',
-					'recorded_purchase',
-					'report',
-					'site_migration_detail',
-					'subscription',
-					'subscription_entitlement',
-					'time_machine',
-					'transaction',
-					'unbilled_charge',
-					'usage',
-					'usage_event',
-					'variant',
-					'virtual_bank_account',
-				])
-				.describe(resourceParamDescription),
-		)
-		.describe('List of possible resources to search documentation for.')
-		.optional(),
+	userRequest: z.string().describe(userRequestParamDescription).optional(),
 	language: z
 		.enum([
-			'nodejs',
+			'node',
 			'python',
 			'curl',
 			'java',
@@ -126,10 +51,8 @@ const documentationSearch = async (
 			query: parameters.query,
 			filters: {
 				language: parameters.language,
-				resources: parameters.resources,
-				data_sources: parameters.data_sources,
 			},
-			user_request: parameters.user_request,
+			userRequest: parameters.userRequest,
 		});
 		return results;
 	} catch (error) {

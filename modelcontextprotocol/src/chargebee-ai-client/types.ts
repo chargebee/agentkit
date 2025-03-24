@@ -1,5 +1,8 @@
 export interface DocumentationSearchResponse {
-	results: string[];
+	results: {
+		content: string;
+    url: string;
+	}[]
 }
 
 export interface DocumentationSearchParams {
@@ -7,14 +10,19 @@ export interface DocumentationSearchParams {
 	limit?: number;
 	filters?: {
 		language?: string;
-		resources?: string[];
-		data_sources?: (
-			| 'help_documentation'
-			| 'api_documentation'
-			| 'release_notes'
-		)[];
 	};
-	user_request?: string;
+	userRequest?: string;
+}
+
+export interface CodePlannerParams {
+	query: string;
+	language?: string;
+}
+
+export interface CodePlannerResponse {
+	result: {
+		content: string;
+  };
 }
 
 export interface RequestOptions extends RequestInit {

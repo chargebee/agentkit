@@ -23,6 +23,7 @@ async function main() {
 				const transport = new StdioServerTransport();
 
 				await mcpServer.connect(transport);
+				logger.info('Chargebee MCP server is running on stdio... 🚀');
 
 				// Handle process signals
 				const cleanup = async () => {
