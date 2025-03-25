@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/chargebee/agentkit/blob/main/media/cb-logo.png?raw=true" alt="Chargebee Icon" width="250" height="250">
+  <img src="https://github.com/chargebee/agentkit/blob/main/media/cb-logo.png?raw=true" alt="Chargebee Icon" width="100" height="100">
 </p>
 
 # Chargebee AgentKit
