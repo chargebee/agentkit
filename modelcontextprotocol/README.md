@@ -1,16 +1,24 @@
 # Chargebee Model Context Protocol (MCP) Server
 
-## Overview
+![MCP Chargebee](https://img.shields.io/badge/MCP-Chargebee-blue)
+[![npm version](https://img.shields.io/npm/v/@chargebee/mcp.svg)](https://www.npmjs.com/package/@chargebee/mcp)
 
-Model Context Protocol (MCP) is a new, [standardized protocol](https://modelcontextprotocol.io/introduction) for managing context between large language models (LLMs) and external systems. In this package, we provide an installer as well as an MCP Server for [Chargebee](https://chargebee.com).
+Model Context Protocol (MCP) is a [standardized protocol](https://modelcontextprotocol.io/introduction) designed to manage context between large language models (LLMs) and external systems.
 
-This enables AI agents to generate integration code and answer your product queries using natural language in tools like Cursor IDE, Claude Desktop, or any MCP client.
+The [Chargebee MCP Server](https://npmjs.com/package/@chargebee/mcp) provides a powerful set of tools to enhance developer productivity. It integrates with AI-powered code editors like Cursor, Windsurf, and Cline, as well as general-purpose tools such as Claude Desktop. It works with any MCP Client.
 
-eg queries:
+With this MCP Server, you can:  
 
-- `How to setup usage based billing in Chargebee?`
-- `What are the different pricing models supported by Chargebee?`
-- `Generate code to create a trial subscription in Chargebee?`
+- Get immediate answers about the Chargebee products and API services.
+
+- Receive context-aware code snippets tailored to your integration needs.
+
+- Access Chargebee’s knowledge base, including:
+  - Documentation
+  - FAQs
+  - Release notes
+  - And more...
+
 
 ## Prerequisites
 
@@ -20,75 +28,134 @@ eg queries:
 
 To run the Chargebee MCP server using [Node.js npx](https://docs.npmjs.com/cli/v10/commands/npx), use the following command:
 
-```
-# To set up all available tools
+```sh
 npx -y @chargebee/mcp@latest
 ```
 
 ## Available Tools
 
-| Tool                             | Description                      |
-| -------------------------------- | -------------------------------- |
-| `chargebee_documentation_search` | Search Chargebee's documentation |
+| Tool                                 | Description                                                                                      |
+| -------------------------------------| -------------------------------------------------------------------------------------------------|
+| `chargebee_documentation_search`     | Search Chargebee's documentation to retrieve detailed information and usage guides.              |
+| `chargebee_code_planner`             | Generate structured code outlines and sample code for integrating Chargebee's APIs and features. |
 
-## Using with Cursor
 
-**Installation - Globally**
+## Installation
 
-Run the MCP server using npx:
 
-```bash
+### Cursor
+
+To add this server to Cursor IDE,
+
+1. Go to `Cursor Settings` > `MCP`
+2. Click `+ Add new Global MCP Server`
+3. Add the following configuration to your global `.cursor/mcp.json` file.
+
+```json
+{
+  "mcpServers": {
+    "chargebee": {
+      "command": "npx",
+      "args": [
+          "-y",
+          "@chargebee/mcp"
+      ]
+    }
+  }
+}
+```
+See the [Cursor documentation](https://docs.cursor.com/context/model-context-protocol) for more details. Note: You can also add this to your project specific cursor configuration. (Supported in Cursor 0.46+) 
+
+
+### Windsurf
+
+To set up MCP with Cascade, navigate to Windsurf - `Settings` > `Advanced Settings` or Command Palette > `Open Windsurf Settings Page`.
+
+Scroll down to the Cascade section and you will find the option to add a new server, view existing servers, and a button to view the raw JSON config file at mcp_config.json.
+
+Here you can click “Add custom server +” to add Chargebee MCP server directly in `mcp_config.json`.
+
+```json
+{
+  "mcpServers": {
+    "chargebee": {
+      "command": "npx",
+      "args": [
+          "-y",
+          "@chargebee/mcp"
+      ]
+    }
+  }
+}
+```
+
+See the [Windsurf documentation](https://docs.codeium.com/windsurf/mcp) for more details.
+
+
+### Cline
+
+Add the following json manually to your `cline_mcp_settings.json` via Cline MCP Server setting.
+
+```json
+{
+  "mcpServers": {
+    "chargebee": {
+      "command": "npx",
+      "args": [
+          "-y",
+          "@chargebee/mcp"
+      ]
+    }
+  }
+}
+```
+
+### Roo Code
+
+Access the MCP settings by clicking `Edit MCP Settings` in Roo Code settings or using the `Roo Code: Open MCP Config` command in VS Code's command palette.
+
+```json
+{
+  "mcpServers": {
+    "chargebee": {
+      "command": "npx",
+      "args": [
+          "-y",
+          "@chargebee/mcp"
+      ]
+    }
+  }
+}
+```
+
+
+### Claude
+
+Add the following to your `claude_desktop_config.json` file. See the [Claude Desktop documentation](https://modelcontextprotocol.io/quickstart/user) for more details.
+
+```json
+{
+  "mcpServers": {
+    "chargebee": {
+      "command": "npx",
+      "args": [
+          "-y",
+          "@chargebee/mcp"
+      ]
+    }
+  }
+}
+```
+
+
+### CLI
+
+You can also run it as CLI by running the following command.
+
+```sh
 npx -y @chargebee/mcp@latest
 ```
 
-In your Cursor IDE
-
-1. Go to `Cursor Settings` > `MCP`
-2. Click `+ Add New MCP Server`
-3. Fill in the form:
-   - Name: `Chargebee MCP` (or any name you prefer)
-   - Type: `command`
-   - Command: `npx -y @chargebee/mcp@latest`
-
-**Installation - Project-specific**
-
-Add an `.cursor/mcp.json` file to your project:
-
-```json
-{
-	"mcpServers": {
-		"chargebee": {
-			"command": "npx",
-			"args": ["-y", "@chargebee/mcp@latest"]
-		}
-	}
-}
-```
-
-**Usage**
-
-Once configured, the chargebee tools will be automatically available to the Cursor AI Agent. You can:
-
-1. The tool will be listed under `Available Tools` in MCP settings
-2. Agent will automatically use it when relevant
-3. You can explicitly ask Agent to send notifications
-
-## Using with Roo Code
-
-Access the MCP settings by clicking "Edit MCP Settings" in Roo Code settings or using the "Roo Code: Open MCP Config" command in VS Code's command palette.
-
-```json
-{
-	"mcpServers": {
-		"chargebee": {
-			"command": "npx",
-			"args": ["-y", "@chargebee/mcp@latest"]
-		}
-	}
-}
-```
-
-3. The chargebee capabilities will be available to Roo Code's AI agents
 
 ## Contribution
 

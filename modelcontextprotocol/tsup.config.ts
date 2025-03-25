@@ -1,4 +1,5 @@
 import { defineConfig } from 'tsup';
+import dotenv from 'dotenv';
 import fs from 'fs';
 
 // Read version from package.json
@@ -23,7 +24,10 @@ export default defineConfig({
 	banner: {
 		js: `/*\n * MCP Server ${version} - Copyright (c) 2011-2025 Chargebee, Inc.\n */\n\n`,
 	},
-	define: {
-		AGENTKIT_BASE_URL: JSON.stringify(process.env.AGENTKIT_BASE_URL),
-	},
+	env: dotenv.config({
+		path:
+			process.env.NODE_ENV === 'development'
+				? '.env.development'
+				: '.env.production',
+	}).parsed,
 });
