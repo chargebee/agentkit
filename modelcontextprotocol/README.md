@@ -2,6 +2,7 @@
 
 ![MCP Chargebee](https://img.shields.io/badge/MCP-Chargebee-blue)
 [![npm version](https://img.shields.io/npm/v/@chargebee/mcp.svg)](https://www.npmjs.com/package/@chargebee/mcp)
+[![smithery badge](https://smithery.ai/badge/@chargebee/agentkit)](https://smithery.ai/server/@chargebee/agentkit)
 
 Model Context Protocol (MCP) is a [standardized protocol](https://modelcontextprotocol.io/introduction) designed to manage context between large language models (LLMs) and external systems.
 
@@ -42,6 +43,13 @@ npx -y @chargebee/mcp@latest
 
 ## Installation
 
+### Installing via Smithery
+
+To install Chargebee MCP Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@chargebee/agentkit):
+
+```bash
+npx -y @smithery/cli install @chargebee/agentkit --client claude
+```
 
 ### Cursor
 
