@@ -19,7 +19,7 @@ With this MCP Server, you can:
   - Release notes
   - And much more
 
-![MCP Demo](https://raw.githubusercontent.com/chargebee/agentkit/readme_update/media/mcp-demo.gif)
+![MCP Demo](https://raw.githubusercontent.com/chargebee/agentkit/main/media/mcp-demo.gif)
 
 ## Prerequisites
 
