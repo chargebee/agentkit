@@ -96,18 +96,18 @@ Refer to the [Windsurf documentation](https://docs.codeium.com/windsurf/mcp) for
 
 Install the Chargebee MCP server in VS Code using one of these buttons:
 
-[<img alt="Install in VS Code Insiders" src="https://img.shields.io/badge/VS_Code_Insiders-VS_Code_Insiders?style=flat-square&label=Install%20Server&color=24bfa5">](https://insiders.vscode.dev/redirect?url=vscode%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522chargebee-mcp%2522%252C%2522command%2522%253A%2522npx%2522%252C%2522args%2522%253A%255B%2522-y%2522%252C%2522%2540chargebee%252Fmcp%2522%255D%257D)
+[<img alt="Install in VS Code Insiders" src="https://img.shields.io/badge/VS_Code_Insiders-VS_Code_Insiders?style=flat-square&label=Install%20Server&color=24bfa5">](https://insiders.vscode.dev/redirect?url=vscode%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522chargebee%2522%252C%2522command%2522%253A%2522npx%2522%252C%2522args%2522%253A%255B%2522-y%2522%252C%2522%2540chargebee%252Fmcp%2522%255D%257D)
 
 Alternatively, you can install the Chargebee MCP server using the VS Code CLI:
 
 ```bash
 # For VS Code
-code --add-mcp '{"name":"chargebee-mcp","command":"npx","args":["-y","@chargebee/mcp"]}'
+code --add-mcp '{"name":"chargebee","command":"npx","args":["-y","@chargebee/mcp"]}'
 ```
 
 ```bash
 # For VS Code Insiders
-code-insiders --add-mcp '{"name":"chargebee-mcp","command":"npx","args":["-y","@chargebee/mcp"]}'
+code-insiders --add-mcp '{"name":"chargebee","command":"npx","args":["-y","@chargebee/mcp"]}'
 ```
 
 After installation, the Chargebee MCP server will be available for use with your GitHub Copilot agent in VS Code.
