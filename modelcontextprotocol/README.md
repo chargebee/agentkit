@@ -13,7 +13,7 @@ With this MCP Server, you can:
 
 - Receive context-aware code snippets tailored to your integration needs.
 
-- Access Chargebee’s knowledge base, including:
+- Access Chargebee's knowledge base, including:
   - Documentation
   - FAQs
   - Release notes
@@ -66,6 +66,7 @@ To add this server to Cursor IDE:
 
 Refer to the [Cursor documentation](https://docs.cursor.com/context/model-context-protocol) for additional details. Note: You can also add this to your project-specific Cursor configuration (supported in Cursor 0.46+).
 
+
 ### Windsurf
 
 To set up MCP with Cascade:
@@ -89,6 +90,46 @@ To set up MCP with Cascade:
 ```
 
 Refer to the [Windsurf documentation](https://docs.codeium.com/windsurf/mcp) for more information.
+
+
+### VS Code
+
+Install the Chargebee MCP server in VS Code using one of these buttons:
+
+[<img alt="Install in VS Code Insiders" src="https://img.shields.io/badge/VS_Code_Insiders-VS_Code_Insiders?style=flat-square&label=Install%20Server&color=24bfa5">](https://insiders.vscode.dev/redirect?url=vscode%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522chargebee-mcp%2522%252C%2522command%2522%253A%2522npx%2522%252C%2522args%2522%253A%255B%2522-y%2522%252C%2522%2540chargebee%252Fmcp%2522%255D%257D)
+
+Alternatively, you can install the Chargebee MCP server using the VS Code CLI:
+
+```bash
+# For VS Code
+code --add-mcp '{"name":"chargebee-mcp","command":"npx","args":["-y","@chargebee/mcp"]}'
+```
+
+```bash
+# For VS Code Insiders
+code-insiders --add-mcp '{"name":"chargebee-mcp","command":"npx","args":["-y","@chargebee/mcp"]}'
+```
+
+After installation, the Chargebee MCP server will be available for use with your GitHub Copilot agent in VS Code.
+
+
+### Claude
+
+Add the following configuration to your `claude_desktop_config.json` file. Refer to the [Claude Desktop documentation](https://modelcontextprotocol.io/quickstart/user) for more details:
+
+```json
+{
+  "mcpServers": {
+    "chargebee": {
+      "command": "npx",
+      "args": [
+          "-y",
+          "@chargebee/mcp"
+      ]
+    }
+  }
+}
+```
 
 ### Cline
 
@@ -124,32 +165,6 @@ Access the MCP settings by selecting `Edit MCP Settings` in Roo Code settings or
     }
   }
 }
-```
-
-### Claude
-
-Add the following configuration to your `claude_desktop_config.json` file. Refer to the [Claude Desktop documentation](https://modelcontextprotocol.io/quickstart/user) for more details:
-
-```json
-{
-  "mcpServers": {
-    "chargebee": {
-      "command": "npx",
-      "args": [
-          "-y",
-          "@chargebee/mcp"
-      ]
-    }
-  }
-}
-```
-
-### CLI
-
-You can also run the server as a CLI by executing the following command:
-
-```sh
-npx -y @chargebee/mcp@latest
 ```
 
 ## Contribution
