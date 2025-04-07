@@ -25,7 +25,6 @@ const codePlannerParameters = z.object({
 			'curl',
 			'java',
 			'go',
-			'java',
 			'ruby',
 			'php',
 			'dotnet',
