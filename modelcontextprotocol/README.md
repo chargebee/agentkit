@@ -91,41 +91,6 @@ To set up MCP with Cascade:
 
 Refer to the [Windsurf documentation](https://docs.codeium.com/windsurf/mcp) for more information.
 
-### Cline
-
-Manually add the following JSON to your `cline_mcp_settings.json` file via the Cline MCP Server settings:
-
-```json
-{
-  "mcpServers": {
-    "chargebee": {
-      "command": "npx",
-      "args": [
-          "-y",
-          "@chargebee/mcp"
-      ]
-    }
-  }
-}
-```
-
-### Roo Code
-
-Access the MCP settings by selecting `Edit MCP Settings` in Roo Code settings or using the `Roo Code: Open MCP Config` command in the VS Code command palette:
-
-```json
-{
-  "mcpServers": {
-    "chargebee": {
-      "command": "npx",
-      "args": [
-          "-y",
-          "@chargebee/mcp"
-      ]
-    }
-  }
-}
-```
 
 ### VS Code
 
@@ -166,12 +131,40 @@ Add the following configuration to your `claude_desktop_config.json` file. Refer
 }
 ```
 
-### CLI
+### Cline
 
-You can also run the server as a CLI by executing the following command:
+Manually add the following JSON to your `cline_mcp_settings.json` file via the Cline MCP Server settings:
 
-```sh
-npx -y @chargebee/mcp@latest
+```json
+{
+  "mcpServers": {
+    "chargebee": {
+      "command": "npx",
+      "args": [
+          "-y",
+          "@chargebee/mcp"
+      ]
+    }
+  }
+}
+```
+
+### Roo Code
+
+Access the MCP settings by selecting `Edit MCP Settings` in Roo Code settings or using the `Roo Code: Open MCP Config` command in the VS Code command palette:
+
+```json
+{
+  "mcpServers": {
+    "chargebee": {
+      "command": "npx",
+      "args": [
+          "-y",
+          "@chargebee/mcp"
+      ]
+    }
+  }
+}
 ```
 
 ## Contribution
