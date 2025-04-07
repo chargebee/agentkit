@@ -13,7 +13,7 @@ With this MCP Server, you can:
 
 - Receive context-aware code snippets tailored to your integration needs.
 
-- Access Chargebee’s knowledge base, including:
+- Access Chargebee's knowledge base, including:
   - Documentation
   - FAQs
   - Release notes
@@ -67,13 +67,14 @@ To add this server to Cursor IDE,
 See the [Cursor documentation](https://docs.cursor.com/context/model-context-protocol) for more details. Note: You can also add this to your project specific cursor configuration. (Supported in Cursor 0.46+) 
 
 
+
 ### Windsurf
 
 To set up MCP with Cascade, navigate to Windsurf - `Settings` > `Advanced Settings` or Command Palette > `Open Windsurf Settings Page`.
 
 Scroll down to the Cascade section and you will find the option to add a new server, view existing servers, and a button to view the raw JSON config file at mcp_config.json.
 
-Here you can click “Add custom server +” to add Chargebee MCP server directly in `mcp_config.json`.
+Here you can click "Add custom server +" to add Chargebee MCP server directly in `mcp_config.json`.
 
 ```json
 {
@@ -127,6 +128,26 @@ Access the MCP settings by clicking `Edit MCP Settings` in Roo Code settings or 
   }
 }
 ```
+
+### VS Code
+
+Install the Chargebee MCP server in VS Code using one of these buttons:
+
+[<img alt="Install in VS Code Insiders" src="https://img.shields.io/badge/VS_Code_Insiders-VS_Code_Insiders?style=flat-square&label=Install%20Server&color=24bfa5">](https://insiders.vscode.dev/redirect?url=vscode%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522Chargebee%2520MCP%2522%252C%2522command%2522%253A%2522npx%2522%252C%2522args%2522%253A%255B%2522-y%2522%252C%2522%2540chargebee%252Fmcp%2522%255D%257D)
+
+Alternatively, you can install the Chargebee MCP server using the VS Code CLI:
+
+```bash
+# For VS Code
+code --add-mcp '{"name":"chargebee-mcp","command":"npx","args":["-y","@chargebee/mcp"]}'
+```
+
+```bash
+# For VS Code Insiders
+code-insiders --add-mcp '{"name":"chargebee-mcp","command":"npx","args":["-y","@chargebee/mcp"]}'
+```
+
+After installation, the Chargebee MCP server will be available for use with your GitHub Copilot agent in VS Code.
 
 
 ### Claude
