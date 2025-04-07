@@ -29,7 +29,6 @@ const documentationSearchParameters = z.object({
 			'curl',
 			'java',
 			'go',
-			'java',
 			'ruby',
 			'php',
 			'dotnet',
