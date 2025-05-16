@@ -1,14 +1,17 @@
 {
-	"name": "@chargebee/agentkit-repo",
-	"description": "Chargebee AgentKit Repository",
-	"version": "0.0.0",
-	"private": true,
-	"scripts": {
-		"format": "prettier --write ."
-	},
-	"author": "Chargebee, Inc. (https://chargebee.com)",
-	"license": "MIT",
-	"devDependencies": {
-		"prettier": "^3.5.3"
-	}
+  "name": "@chargebee/agentkit-repo",
+  "description": "Chargebee AgentKit Repository",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write ."
+  },
+  "author": "Chargebee, Inc. (https://chargebee.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^3.5.3"
+  },
+  "dependencies": {
+    "mcp-evals": "^1.0.18"
+  }
 }
