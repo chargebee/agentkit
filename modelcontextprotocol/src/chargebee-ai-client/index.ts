@@ -38,7 +38,7 @@ export class ChargebeeAIClient {
 				headers: {
 					'Content-Type': 'application/json',
 					'X-Requested-With': 'fetch',
-					'x-cb-consumer-app-name': 'mcp',
+					'X-CB-Consumer-App-Name': 'mcp',
 					...this.headers,
 					...options.headers,
 				},
