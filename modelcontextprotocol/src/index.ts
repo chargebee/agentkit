@@ -54,7 +54,7 @@ async function main() {
  * @param error - The error that occurred during initialization
  */
 function handleError(error: any) {
-	logger.error('\n🚨  Error initializing Aero AI MCP server:\n');
+	logger.error('\n🚨  Error initializing Chargebee MCP server:\n');
 	logger.warn(`   ${error.message}\n`);
 	process.exit(1);
 }
