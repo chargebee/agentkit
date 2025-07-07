@@ -4,7 +4,7 @@ const YELLOW = '\x1b[33m';
 const BLUE = '\x1b[34m';
 const RESET = '\x1b[0m';
 
-// Important Note: Here console.error is usedinstead of console.log to avoid breaking the MCP server since it listens to stdio.
+// Important Note: Here console.error is used instead of console.log to avoid breaking the MCP server since it listens to stdio.
 
 /**
  * Wraps text with ANSI escape codes to display it in red color in the console

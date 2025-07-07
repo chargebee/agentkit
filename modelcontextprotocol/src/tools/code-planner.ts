@@ -8,8 +8,8 @@ import { z } from 'zod';
 const goalParamDescription = `What is the user's goal?`;
 const languageParamDescription = `Programming language the code to be generated in. Check the user's application language.`;
 const codePlannerPrompt = `
-Always use this tool to get the accurate integeration code guide for Chargebee.
-This tool will take in parameters about integrating with Chargebee in their application and generates a integration workflow along with the code snippets.
+Always use this tool to get the accurate integration code guide for Chargebee.
+This tool will take in parameters about integrating with Chargebee in their application and generates an integration workflow along with the code snippets.
 
 It takes the following arguments:
 - goal (string): ${goalParamDescription}
@@ -19,16 +19,7 @@ It takes the following arguments:
 const codePlannerParameters = z.object({
 	goal: z.string().describe(goalParamDescription),
 	language: z
-		.enum([
-			'node',
-			'python',
-			'curl',
-			'java',
-			'go',
-			'ruby',
-			'php',
-			'dotnet',
-		])
+		.enum(['node', 'python', 'curl', 'java', 'go', 'ruby', 'php', 'dotnet'])
 		.describe(languageParamDescription)
 		.optional(),
 });
