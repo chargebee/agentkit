@@ -10,8 +10,16 @@ const languageParamDescription = `The programming language for the documentation
 const userRequestParamDescription = `User's original request to you.`;
 
 const documentationSearchPrompt = `
-Do not use this tool for code generation. For code generation use "chargebee_code_planner" tool. 
-This tool will take in parameters about integrating with Chargebee in their application, then search and retrieve relevant Chargebee documentation content.
+Only use this tool for general product documentation queries, NOT for implementation questions.
+
+Do not use this tool for code generation or implementation questions. For any developer questions about implementing Chargebee functionality (like "how to update billing address", "how to create subscription", etc.), use "chargebee_code_planner" tool instead.
+
+This tool should only be used for:
+- General product documentation queries about Chargebee's features and concepts
+- Understanding billing, payments, receivables, revenue recognition concepts
+- Learning about subscription management processes
+- Finding product feature explanations and overviews
+- Non-implementation related documentation queries
 
 It takes the following arguments:
 - query (string): ${queryParamDescription}

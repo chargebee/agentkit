@@ -8,7 +8,10 @@ import { z } from 'zod';
 const goalParamDescription = `What is the user's goal?`;
 const languageParamDescription = `Programming language the code to be generated in. Check the user's application language.`;
 const codePlannerPrompt = `
-Always use this tool to get the accurate integration code guide for Chargebee.
+Use this tool for any Chargebee integration questions or implementation needs.
+
+Always use this tool to get the accurate integration code guide for Chargebee. This is the main tool developers need when asking about implementing Chargebee functionality (like "how to update billing address", "how to create subscription", "how to handle webhooks", etc.).
+
 This tool will take in parameters about integrating with Chargebee in their application and generates an integration workflow along with the code snippets.
 
 It takes the following arguments:
