@@ -18,6 +18,7 @@ export class ChargebeeMCPServer extends McpServer {
 		});
 
 		this.registerTools();
+		this.registerPrompts();
 
 		this.server.oninitialized = () => {
 			const mcpClient = this.server.getClientVersion();
@@ -71,5 +72,45 @@ export class ChargebeeMCPServer extends McpServer {
 				},
 			);
 		});
+	}
+
+	/**
+	 * Registers system prompts to guide tool selection.
+	 * @private
+	 */
+	private registerPrompts() {
+		this.prompt(
+			'chargebee-tool-selection',
+			'Guidelines for choosing the right Chargebee tool based on query type',
+			{},
+			async () => {
+				return {
+					messages: [
+						{
+							role: 'user' as const,
+							content: {
+								type: 'text' as const,
+								text: `When working with Chargebee queries, choose the appropriate tool based on the question type:
+
+**Use chargebee_code_planner when:**
+- User asks "how to..." questions (e.g., "how to update billing address", "how to create subscription")
+- User needs implementation guidance or code examples
+- User wants to integrate specific Chargebee functionality
+- User asks about API usage, webhooks, or technical implementation
+- User needs code generation documentation or API documentation involved in code creation
+
+**Use chargebee_documentation_search when:**
+- User asks about product features and concepts (e.g., "what billing models does Chargebee support")
+- User wants to understand business processes or workflows
+- User needs general product information or explanations
+- User asks about pricing, plans, or business-related features
+
+**Decision rule:** If the query involves implementation, code generation, or API documentation ("how to do X"), use code_planner. If it's about understanding product concepts ("what is X"), use documentation_search.`,
+							},
+						},
+					],
+				};
+			},
+		);
 	}
 }
