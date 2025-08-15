@@ -3,6 +3,7 @@
 </p>
 
 # Chargebee AgentKit
+[![Trust Score](https://archestra.ai/mcp-catalog/api/badge/quality/chargebee/agentkit)](https://archestra.ai/mcp-catalog/chargebee__agentkit)
 
 Seamlessly add Chargebee to your AI Agents using AgentKit for smarter billing and subscription workflows.
 
