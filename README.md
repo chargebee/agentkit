@@ -19,3 +19,8 @@ To contribute to this project, please see the [contribution guide](CONTRIBUTING.
 ## License
 
 [MIT](LICENSE)
+
+# ⚠️ Deprecated – No Longer Maintained
+
+This package/repository is **officially deprecated** and will not receive further updates.  
+Please use the new recommended package here: **[Chargebee MCP Server](https://www.chargebee.com/docs/billing/2.0/ai-in-chargebee/chargebee-mcp)**
