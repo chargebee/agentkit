@@ -1,7 +1,8 @@
 {
 	"name": "@chargebee/agentkit-repo",
-	"description": "Chargebee AgentKit Repository",
+	"description": "Chargebee AgentKit Repository (Deprecated - see https://www.chargebee.com/docs/billing/2.0/ai-in-chargebee/chargebee-mcp)",
 	"version": "0.0.0",
+	"deprecated": "This repository is deprecated. Please use the new Chargebee MCP Server: https://www.chargebee.com/docs/billing/2.0/ai-in-chargebee/chargebee-mcp",
 	"private": true,
 	"scripts": {
 		"format": "prettier --write ."
