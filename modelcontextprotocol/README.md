@@ -3,11 +3,11 @@
 ![MCP Chargebee](https://img.shields.io/badge/MCP-Chargebee-blue)
 [![npm version](https://img.shields.io/npm/v/@chargebee/mcp.svg)](https://www.npmjs.com/package/@chargebee/mcp)
 
-⚠️ Deprecation Notice
-This package is deprecated and will no longer receive updates or support.
+> ⚠️ Deprecation Notice
+> 
+> This package is deprecated and will no longer receive updates or support.
 Please migrate to our new KnowledgeBase MCP Server, which provides enhanced capabilities and improved accuracy.
-
-🔗 Learn more and upgrade here: [Chargebee MCP Server Documentation](https://www.chargebee.com/docs/billing/2.0/ai-in-chargebee/chargebee-mcp)
+> Learn more and upgrade here: [Chargebee MCP Server Documentation](https://www.chargebee.com/docs/billing/2.0/ai-in-chargebee/chargebee-mcp)
 
 ---
 
