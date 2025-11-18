@@ -3,6 +3,14 @@
 ![MCP Chargebee](https://img.shields.io/badge/MCP-Chargebee-blue)
 [![npm version](https://img.shields.io/npm/v/@chargebee/mcp.svg)](https://www.npmjs.com/package/@chargebee/mcp)
 
+> ⚠️ Deprecation Notice
+> 
+> This package is deprecated and will no longer receive updates or support.
+Please migrate to our new KnowledgeBase MCP Server, which provides enhanced capabilities and improved accuracy.
+> Learn more and upgrade here: [Chargebee MCP Server Documentation](https://www.chargebee.com/docs/billing/2.0/ai-in-chargebee/chargebee-mcp)
+
+---
+
 Model Context Protocol (MCP) is a [standardized protocol](https://modelcontextprotocol.io/introduction) designed to manage context between large language models (LLMs) and external systems.
 
 The [Chargebee MCP Server](https://npmjs.com/package/@chargebee/mcp) offers a robust set of tools to improve developer efficiency. It integrates with AI-powered code editors like Cursor, Windsurf, and Cline, as well as general-purpose tools such as Claude Desktop. It is compatible with any MCP Client.

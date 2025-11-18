@@ -1,5 +1,12 @@
 # Contributing to Chargebee Agentkit
 
+# ⚠️ Deprecated – No Longer Maintained
+
+This repository is **officially deprecated** and will not receive further updates or contributions.  
+Please use the new recommended solution: **[Chargebee MCP Server](https://www.chargebee.com/docs/billing/2.0/ai-in-chargebee/chargebee-mcp)**
+
+---
+
 Thank you for your interest in contributing to Chargebee AgentKit! We welcome all contributions, no matter how big or small.
 
 If you’ve found a bug or have a feature request, please [open an issue](/issues) – your feedback helps us improve.
