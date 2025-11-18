@@ -1,6 +1,6 @@
 {
 	"name": "@chargebee/mcp",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"description": "MCP server for interacting with Chargebee",
 	"deprecated": "This package is deprecated and will no longer receive updates or support.Please migrate to the new Chargebee MCP Server for accessing latest and enhanced features https://www.chargebee.com/docs/billing/2.0/ai-in-chargebee/chargebee-mcp",
 	"type": "module",
