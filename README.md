@@ -4,6 +4,12 @@
 
 # Chargebee AgentKit
 
+> ⚠️ Deprecation Notice
+> 
+> This package is deprecated and will no longer receive updates or support.
+Please migrate to our new KnowledgeBase MCP Server, which provides enhanced capabilities and improved accuracy.
+> Learn more and upgrade here: [Chargebee MCP Server Documentation](https://www.chargebee.com/docs/billing/2.0/ai-in-chargebee/chargebee-mcp)
+
 Seamlessly add Chargebee to your AI Agents using AgentKit for smarter billing and subscription workflows.
 
 AgentKit is a toolkit that enhances AI applications like Claude, Cursor and other agentic AI applications with Chargebee capabilities. It enables users across different roles to integrate their solutions with Chargebee and manage simplifying billing and subscription management using AI.
@@ -19,8 +25,3 @@ To contribute to this project, please see the [contribution guide](CONTRIBUTING.
 ## License
 
 [MIT](LICENSE)
-
-# ⚠️ Deprecated – No Longer Maintained
-
-This package/repository is **officially deprecated** and will not receive further updates.  
-Please use the new recommended package here: **[Chargebee MCP Server](https://www.chargebee.com/docs/billing/2.0/ai-in-chargebee/chargebee-mcp)**
